@@ -1,6 +1,3 @@
-/* ==========================================================================
-   ESTILOS DE CONTENEDORES DE AUTENTICACIÓN (LOGIN Y REGISTRO)
-   ========================================================================== */
 :root {
     --fondo-general: #F8FAFC;
     --contenedor-blanco: #FFFFFF;
@@ -52,7 +49,6 @@
 .auth-header h2 { font-size: 26px; font-weight: 700; color: var(--estructura-menus); margin-bottom: 5px; }
 .auth-header p { font-size: 14px; color: var(--texto-principal); }
 
-/* SISTEMA DE PESTAÑAS (TABS) */
 .auth-tabs {
     display: flex;
     margin-bottom: 30px;
@@ -75,7 +71,6 @@
     border-bottom-color: var(--accion-electrico);
 }
 
-/* COMPONENTES DE FORMULARIO DE ACCESO */
 .auth-form {
     display: flex;
     flex-direction: column;
@@ -118,7 +113,6 @@
 }
 .form-check input { width: 16px; height: 16px; accent-color: var(--accion-electrico); margin-top: 2px; }
 
-/* BOTONES */
 .btn {
     padding: 12px;
     font-size: 15px;
