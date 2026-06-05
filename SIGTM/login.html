@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoMétrica - Iniciar Sesión</title>
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="auth-wrapper">
+        <div class="auth-card">
+            <div class="auth-header">
+                <a href="index.html" class="link-volver"><i class="fa-solid fa-arrow-left"></i> Volver a la web</a>
+                <h2>Bienvenido de nuevo</h2>
+                <p>Ingresa tus credenciales para acceder al sistema de gestión.</p>
+            </div>
+
+            <div class="auth-tabs">
+                <a href="login.html" class="tab-link active">Iniciar Sesión</a>
+                <a href="registro.html" class="tab-link">Registrarce</a>
+            </div>
+
+            <form id="loginForm" class="auth-form">
+                <div class="form-group">
+                    <label for="email"><i class="fa-solid fa-envelope"></i> Correo Electrónico</label>
+                    <input type="email" id="email" placeholder="nombre@taller.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password"><i class="fa-solid fa-lock"></i> Contraseña</label>
+                    <input type="password" id="password" placeholder="••••••••" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="login-rol"><i class="fa-solid fa-user-gear"></i> Tipo de Cuenta</label>
+                    <select id="login-rol" required>
+                        <option value="mecanico">Administrador / Mecánico (Panel Técnico)</option>
+                        <option value="cliente">Cliente (Portal de Consulta)</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-electrico btn-block">Ingresar al Panel</button>
+            </form>
+
+            <div class="auth-footer">
+                <p>¿No tienes una cuenta aún? <a href="registro.html" class="text-link">Crea una aquí</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Evita que la página se recargue
+
+            // Capturamos el rol seleccionado
+            const rolSeleccionado = document.getElementById('login-rol').value;
+
+            // Redirección condicionada según el Flujo del Sistema (Actor)
+            if (rolSeleccionado === 'mecanico') {
+                window.location.href = 'panel-mecanico.html';
+            } else if (rolSeleccionado === 'cliente') {
+                window.location.href = 'portal-cliente.html';
+            }
+        });
+    </script>
+
+</body>
+</html>
