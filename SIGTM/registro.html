@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoMétrica - Registrar Cuenta</title>
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="auth-wrapper">
+        <div class="auth-card">
+            <div class="auth-header">
+                <a href="index.html" class="link-volver"><i class="fa-solid fa-arrow-left"></i> Volver a la web</a>
+                <h2>Crear Cuenta Administrativa</h2>
+                <p>Digitaliza el flujo de trabajo y ofrece transparencia a tus clientes.</p>
+            </div>
+
+            <div class="auth-tabs">
+                <a href="login.html" class="tab-link">Iniciar Sesión</a>
+                <a href="registro.html" class="tab-link active">Registrarce</a>
+            </div>
+
+            <form id="registroForm" class="auth-form">
+                <div class="form-group">
+                    <label for="fullname"><i class="fa-solid fa-user"></i> Nombre Completo del Responsable</label>
+                    <input type="text" id="fullname" placeholder="Ej. Carlos Mendoza" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email_reg"><i class="fa-solid fa-envelope"></i> Correo Electrónico Corporativo</label>
+                    <input type="email" id="email_reg" placeholder="contacto@automotriz.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="rol"><i class="fa-solid fa-user-gear"></i> Rol en el Sistema</label>
+                    <select id="rol" required>
+                        <option value="mecanico">Administrador / Mecánico de Taller</option>
+                        <option value="cliente">Cliente (Consulta de Vehículo)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="password_reg"><i class="fa-solid fa-lock"></i> Contraseña de Seguridad</label>
+                    <input type="password" id="password_reg" placeholder="Mínimo 8 caracteres" required>
+                </div>
+
+                <div class="form-check">
+                    <input type="checkbox" id="terms" required>
+                    <label for="terms">Acepto los términos de confidencialidad y seguridad de datos.</label>
+                </div>
+
+                <button type="submit" class="btn btn-electrico btn-block">Registrar y Configurar Sistema</button>
+            </form>
+
+            <div class="auth-footer">
+                <p>¿Ya eres miembro? <a href="login.html" class="text-link">Inicia sesión aquí</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('registroForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const rol = document.getElementById('rol').value;
+            
+            // Simulación de guardado exitoso antes de enviar al panel
+            alert("¡Registro Exitoso! Configurando entorno de AutoMétrica...");
+
+            // Redirección inmediata según el rol registrado
+            if (rol === 'mecanico') {
+                window.location.href = 'panel-mecanico.html';
+            } else {
+                window.location.href = 'portal-cliente.html';
+            }
+        });
+    </script>
+
+</body>
+</html>

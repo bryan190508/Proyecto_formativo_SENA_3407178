@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoMétrica - Panel Técnico y de Gestión</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <i class="fa-solid fa-square-poll-vertical text-electrico"></i> AutoMétrica
+            </div>
+            <div class="user-profile">
+                <i class="fa-solid fa-user-gear profile-icon"></i>
+                <div>
+                    <h4>Carlos Mendoza</h4>
+                    <span>Admin / Mecánico</span>
+                </div>
+            </div>
+            <ul class="sidebar-menu">
+                <li class="active"><a href="#"><i class="fa-solid fa-folder-plus"></i> Órdenes de Servicio</a></li>
+                <li><a href="#"><i class="fa-solid fa-car"></i> Gestión de Vehículos</a></li>
+                <li><a href="#"><i class="fa-solid fa-users"></i> Base de Clientes</a></li>
+                <li class="menu-logout"><a href="index.html"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <header class="main-header">
+                <h2>Gestión de Órdenes de Trabajo</h2>
+                <button class="btn btn-electrico" onclick="alert('Abriendo formulario: Registro de Vehículo e Historial')">
+                    <i class="fa-solid fa-plus"></i> Nueva Orden
+                </button>
+            </header>
+
+            <section class="dashboard-grid">
+                <div class="card card-formulario">
+                    <h3><i class="fa-solid fa-screwdriver-wrench text-electrico"></i> Actualización de Servicio Técnico</h3>
+                    <p class="card-subtitle">Registra el diagnóstico y justifica los costos asociados al vehículo.</p>
+                    
+                    <form class="panel-form" onsubmit="event.preventDefault(); alert('Orden guardada y actualizada en el historial del vehículo.');">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Vehículo / Placa</label>
+                                <input type="text" value="Mazda 3 (ABC-123)" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label>Estado del Proceso</label>
+                                <select class="select-estado en-reparacion">
+                                    <option value="recibido">Recibido</option>
+                                    <option value="diagnostico">En Diagnóstico</option>
+                                    <option value="reparacion" selected>En Reparación (Amarillo)</option>
+                                    <option value="finalizado">Servicio Finalizado (Verde)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Diagnóstico Inicial Técnico</label>
+                            <textarea rows="2">Vibración severa en el tren delantero al aplicar fuerza en el pedal de freno a altas velocidades.</textarea>
+                        </div>
+
+                        <div class="seccion-piezas-form">
+                            <h4><i class="fa-solid fa-puzzle-piece"></i> Componente o Pieza a Intervenir</h4>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Nombre de la Pieza</label>
+                                    <input type="text" value="Discos de Freno Delanteros">
+                                </div>
+                                <div class="form-group">
+                                    <label>Precio ($ COP)</label>
+                                    <input type="text" value="240.000">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Descripción y Justificación del Cambio</label>
+                                <textarea rows="2">Desgaste térmico severo y deformación en la superficie de fricción del disco izquierdo. Requiere reemplazo inmediato para asegurar el frenado.</textarea>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-electrico btn-block">Guardar Cambios de la Orden</button>
+                    </form>
+                </div>
+
+                <div class="card card-lista">
+                    <h3>Monitoreo de Vehículos en Taller</h3>
+                    <p class="card-subtitle">Flujo operativo y trazabilidad actual del negocio.</p>
+                    
+                    <div class="lista-ordenes">
+                        <div class="item-orden estado-borde-proceso">
+                            <div class="item-info">
+                                <strong>Mazda 3 [ABC-123]</strong>
+                                <p>Cambio de componentes de fricción</p>
+                            </div>
+                            <span class="status-pill status-proceso">En Reparación</span>
+                        </div>
+
+                        <div class="item-orden estado-borde-peligro">
+                            <div class="item-info">
+                                <strong>Chevrolet Onix [XYZ-789]</strong>
+                                <p>Fallo crítico en sistema de refrigeración</p>
+                            </div>
+                            <span class="status-pill status-peligro">Retrasado</span>
+                        </div>
+
+                        <div class="item-orden estado-borde-exito">
+                            <div class="item-info">
+                                <strong>Renault Sandero [KJI-567]</strong>
+                                <p>Mantenimiento preventivo general</p>
+                            </div>
+                            <span class="status-pill status-exito">Finalizado</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+</body>
+</html>

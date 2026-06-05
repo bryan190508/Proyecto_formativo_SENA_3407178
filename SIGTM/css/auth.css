@@ -1,0 +1,143 @@
+/* ==========================================================================
+   ESTILOS DE CONTENEDORES DE AUTENTICACIÓN (LOGIN Y REGISTRO)
+   ========================================================================== */
+:root {
+    --fondo-general: #F8FAFC;
+    --contenedor-blanco: #FFFFFF;
+    --estructura-menus: #0F172A;
+    --texto-principal: #334155;
+    --accion-electrico: #0284C7;
+    --accion-hover: #0369a1;
+    --gris-suave: #E2E8F0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.auth-wrapper {
+    background-color: var(--fondo-general);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.auth-card {
+    background-color: var(--contenedor-blanco);
+    width: 100%;
+    max-width: 480px;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+    border: 1px solid var(--gris-suave);
+}
+
+.auth-header {
+    margin-bottom: 25px;
+}
+.link-volver {
+    display: inline-block;
+    color: var(--accion-electrico);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+.link-volver:hover { color: var(--accion-hover); }
+.auth-header h2 { font-size: 26px; font-weight: 700; color: var(--estructura-menus); margin-bottom: 5px; }
+.auth-header p { font-size: 14px; color: var(--texto-principal); }
+
+/* SISTEMA DE PESTAÑAS (TABS) */
+.auth-tabs {
+    display: flex;
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--gris-suave);
+}
+.tab-link {
+    flex: 1;
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--texto-principal);
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    transition: all 0.2s;
+}
+.tab-link.active {
+    color: var(--accion-electrico);
+    border-bottom-color: var(--accion-electrico);
+}
+
+/* COMPONENTES DE FORMULARIO DE ACCESO */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.form-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--estructura-menus);
+}
+.form-group label i { margin-right: 5px; color: var(--texto-principal); }
+.form-group input, .form-group select {
+    padding: 12px 14px;
+    font-size: 14px;
+    border: 1px solid var(--gris-suave);
+    border-radius: 6px;
+    background-color: var(--fondo-general);
+    color: var(--estructura-menus);
+    outline: none;
+    width: 100%;
+    transition: border-color 0.2s;
+}
+.form-group input:focus, .form-group select:focus {
+    border-color: var(--accion-electrico);
+    background-color: var(--contenedor-blanco);
+}
+
+.form-check {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--texto-principal);
+    cursor: pointer;
+}
+.form-check input { width: 16px; height: 16px; accent-color: var(--accion-electrico); margin-top: 2px; }
+
+/* BOTONES */
+.btn {
+    padding: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: 0.2s;
+}
+.btn-electrico { background-color: var(--accion-electrico); color: white; border: none; }
+.btn-electrico:hover { background-color: var(--accion-hover); }
+.btn-block { width: 100%; display: block; }
+
+.auth-footer {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 13px;
+    color: var(--texto-principal);
+}
+.text-link { color: var(--accion-electrico); text-decoration: none; font-weight: 600; }
+.text-link:hover { text-decoration: underline; }
