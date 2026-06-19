@@ -1,0 +1,74 @@
+CREATE TABLE usuarios (
+    id_usuario SERIAL PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    correo VARCHAR(100) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    rol VARCHAR(30) NOT NULL
+);
+
+CREATE TABLE vehiculos (
+    id_vehiculo SERIAL PRIMARY KEY,
+    placa VARCHAR(20) UNIQUE NOT NULL,
+    marca VARCHAR(50) NOT NULL,
+    modelo VARCHAR(50) NOT NULL,
+
+    id_usuario INTEGER NOT NULL,
+
+    CONSTRAINT fk_usuario
+        FOREIGN KEY(id_usuario)
+        REFERENCES usuarios(id_usuario)
+        ON DELETE CASCADE
+);
+
+CREATE TABLE ordenes_servicio (
+    id_orden SERIAL PRIMARY KEY,
+
+    fecha_ingreso DATE NOT NULL,
+
+    estado VARCHAR(50) NOT NULL,
+
+    diagnostico TEXT NOT NULL,
+
+    id_vehiculo INTEGER NOT NULL,
+
+    CONSTRAINT fk_vehiculo
+        FOREIGN KEY(id_vehiculo)
+        REFERENCES vehiculos(id_vehiculo)
+        ON DELETE CASCADE
+);
+
+CREATE TABLE piezas (
+    id_pieza SERIAL PRIMARY KEY,
+
+    nombre VARCHAR(100) NOT NULL,
+
+    descripcion TEXT NOT NULL,
+
+    justificacion TEXT NOT NULL,
+
+    precio NUMERIC(12,2) NOT NULL,
+
+    id_orden INTEGER NOT NULL,
+
+    CONSTRAINT fk_orden
+        FOREIGN KEY(id_orden)
+        REFERENCES ordenes_servicio(id_orden)
+        ON DELETE CASCADE
+);
+
+CREATE TABLE historial_servicio (
+    id_historial SERIAL PRIMARY KEY,
+
+    fecha DATE NOT NULL,
+
+    descripcion TEXT NOT NULL,
+
+    id_vehiculo INTEGER NOT NULL,
+
+    CONSTRAINT fk_historial_vehiculo
+        FOREIGN KEY(id_vehiculo)
+        REFERENCES vehiculos(id_vehiculo)
+        ON DELETE CASCADE
+);
+
+select * from usuarios;
