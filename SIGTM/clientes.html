@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base de Clientes | AutoMétrica</title>
+    <link rel="stylesheet" href="css/clientes.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="main-content">
+        <div class="header">
+            <h1>Base de Clientes</h1>
+            <button class="btn-nuevo">
+                + Nuevo Cliente
+            </button>
+        </div>
+        
+        <div class="card">
+            <h2>Registrar Cliente</h2>
+            
+            <div class="form-grid">
+                <div>
+                    <label>Nombre Completo</label>
+                    <input type="text">
+                </div>
+                
+                <div>
+                    <label>Cédula</label>
+                    <input type="text">
+                </div>
+                
+                <div>
+                    <label>Teléfono</label>
+                    <input type="text">
+                </div>
+                
+                <div>
+                    <label>Correo</label>
+                    <input type="email">
+                </div>
+            </div>
+            
+            <button class="btn-guardar">
+                Guardar Cliente
+            </button>
+        
+        </div>
+        
+        <div class="card">
+            <h2>Clientes Registrados</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Cédula</th>
+                        <th>Teléfono</th>
+                        <th>Correo</th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    <tr>
+                        <td>Juan Pérez</td>
+                        <td>1023456789</td>
+                        <td>3001234567</td>
+                        <td>juan@gmail.com</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>María Gómez</td>
+                        <td>1056789123</td>
+                        <td>3016547890</td>
+                        <td>maria@gmail.com</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>
