@@ -198,3 +198,350 @@ p,label,input,textarea,select,a{
 .banner-info h2{
     font-size:40px;
 }
+
+
+
+/* ==========================================================================
+   Estilos de apartado de contacto
+   ========================================================================== */
+
+.hero-contacto {
+     background-image: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
+                url(https://img.pikbest.com/backgrounds/20190919/technology-in-the-concept-of-mechanical-background-v_1557129jpg!w700wp);
+            height: 320px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-contacto-content h1 {
+            font-size: 40px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 12px;
+        }
+
+        .hero-contacto-content p {
+            font-size: 16px;
+            color: #E2E8F0;
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        /* ===== GRID PRINCIPAL DE CONTACTO ===== */
+        .contacto-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        @media (max-width: 900px) {
+            .contacto-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ===== TARJETA DEL FORMULARIO ===== */
+        .tarjeta-form {
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 40px;
+            border: 1px solid #E2E8F0;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.04);
+        }
+
+        .tarjeta-form h3 {
+            font-size: 22px;
+            color: #0F172A;
+            margin-bottom: 6px;
+        }
+
+        .tarjeta-form .subtitulo {
+            font-size: 14px;
+            color: #334155;
+            margin-bottom: 28px;
+        }
+
+        .contacto-form {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-row-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        @media (max-width: 600px) {
+            .form-row-2 { grid-template-columns: 1fr; }
+        }
+
+        .form-group label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #0F172A;
+        }
+
+        .form-group label i {
+            margin-right: 5px;
+            color: #334155;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 12px 14px;
+            font-size: 14px;
+            border: 1px solid #E2E8F0;
+            border-radius: 6px;
+            background-color: #F8FAFC;
+            color: #0F172A;
+            outline: none;
+            width: 100%;
+            transition: border-color 0.2s;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #0284C7;
+            background-color: #ffffff;
+        }
+
+        .form-group textarea {
+            resize: none;
+        }
+
+        .btn-enviar {
+            background-color: #0284C7;
+            color: #ffffff;
+            border: none;
+            padding: 14px;
+            font-size: 15px;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: background-color 0.2s;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .btn-enviar:hover {
+            background-color: #0369a1;
+        }
+
+        /* ===== COLUMNA DERECHA: CANALES + MAPA ===== */
+        .col-info {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .tarjeta-canal {
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 28px;
+            border: 1px solid #E2E8F0;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.04);
+        }
+
+        .tarjeta-canal h3 {
+            font-size: 18px;
+            color: #0F172A;
+            margin-bottom: 20px;
+        }
+
+        .lista-canales {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .canal-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px;
+            background: #F8FAFC;
+            border-radius: 8px;
+            border: 1px solid #E2E8F0;
+            text-decoration: none;
+            transition: border-color 0.2s, transform 0.15s;
+        }
+
+        .canal-item:hover {
+            border-color: #0284C7;
+            transform: translateX(3px);
+        }
+
+        .canal-icono {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .canal-icono.electrico { background: #e0f2fe; color: #0284C7; }
+        .canal-icono.whatsapp  { background: #dcfce7; color: #16A34A; }
+        .canal-icono.email     { background: #e0f2fe; color: #0284C7; }
+        .canal-icono.ubicacion { background: #fee2e2; color: #DC2626; }
+
+        .canal-texto strong {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #0F172A;
+            margin-bottom: 3px;
+        }
+
+        .canal-texto span {
+            font-size: 13px;
+            color: #334155;
+        }
+
+        /* ===== MAPA EMBEBIDO SIMULADO ===== */
+        .tarjeta-mapa {
+            background: #ffffff;
+            border-radius: 10px;
+            border: 1px solid #E2E8F0;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.04);
+        }
+
+        .mapa-header {
+            padding: 18px 24px;
+            border-bottom: 1px solid #E2E8F0;
+        }
+
+        .mapa-header h3 {
+            font-size: 16px;
+            color: #0F172A;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .mapa-placeholder {
+            height: 200px;
+            background: linear-gradient(135deg, #e0f2fe 0%, #f0fdf4 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: #0284C7;
+            font-size: 13px;
+        }
+
+        .mapa-placeholder i {
+            font-size: 40px;
+            opacity: 0.6;
+        }
+
+        .mapa-placeholder p {
+            font-weight: 600;
+            color: #0F172A;
+        }
+
+        .mapa-placeholder span {
+            color: #334155;
+            font-size: 12px;
+        }
+
+        /* ===== SECCIÓN HORARIOS ===== */
+        .seccion-horarios {
+            background: #0F172A;
+            padding: 60px 8%;
+        }
+
+        .seccion-horarios .seccion-header h2 {
+            color: #ffffff;
+        }
+
+        .seccion-horarios .seccion-header p {
+            color: #E2E8F0;
+        }
+
+        .grid-horarios {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .tarjeta-horario {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 8px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .tarjeta-horario i {
+            font-size: 28px;
+            color: #0284C7;
+            margin-bottom: 12px;
+        }
+
+        .tarjeta-horario h4 {
+            font-size: 15px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 6px;
+        }
+
+        .tarjeta-horario p {
+            font-size: 13px;
+            color: #94a3b8;
+        }
+
+        .badge-disponible {
+            display: inline-block;
+            margin-top: 10px;
+            background: rgba(22,163,74,0.15);
+            color: #4ade80;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 20px;
+            border: 1px solid rgba(74,222,128,0.2);
+        }
+
+        /* ===== MENSAJE DE ÉXITO ===== */
+        .mensaje-exito {
+            display: none;
+            background: #dcfce7;
+            border: 1px solid #86efac;
+            border-radius: 8px;
+            padding: 16px 20px;
+            font-size: 14px;
+            color: #166534;
+            font-weight: 600;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+  
+
+
