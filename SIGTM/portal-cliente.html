@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoMétrica - Consulta de Estado del Cliente</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="portal-cliente-layout">
+        <nav class="portal-nav">
+            <div class="logo"><i class="fa-solid fa-square-poll-vertical text-electrico"></i> AutoMétrica Cliente</div>
+            <div class="nav-user-info">
+                <span>Vehículo: <strong>Mazda 3 (ABC-123)</strong></span>
+                <a href="index.html" class="btn-salir-portal"><i class="fa-solid fa-arrow-right-from-bracket"></i> Salir</a>
+            </div>
+        </nav>
+
+        <main class="portal-content">
+            <div class="portal-header-box">
+                <h2>Seguimiento de tu Servicio en Tiempo Real</h2>
+                <p>Consulta las evidencias de tu reparación con transparencia y honestidad garantizada.</p>
+            </div>
+
+            <div class="card linea-tiempo-card">
+                <div class="timeline">
+                    <div class="timeline-step completed">
+                        <div class="step-icon"><i class="fa-solid fa-car-side"></i></div>
+                        <span>Recibido</span>
+                    </div>
+                    <div class="timeline-step completed">
+                        <div class="step-icon"><i class="fa-solid fa-magnifying-glass-wrench"></i></div>
+                        <span>En Diagnóstico</span>
+                    </div>
+                    <div class="timeline-step active">
+                        <div class="step-icon"><i class="fa-solid fa-gears"></i></div>
+                        <span>En Reparación</span>
+                    </div>
+                    <div class="timeline-step">
+                        <div class="step-icon"><i class="fa-solid fa-flag-checkered"></i></div>
+                        <span>Finalizado</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portal-grid-detalles">
+                <div class="card">
+                    <h3><i class="fa-solid fa-clipboard-list text-electrico"></i> Resumen Técnico del Taller</h3>
+                    <div class="detalle-item">
+                        <strong>Diagnóstico reportado por el mecánico:</strong>
+                        <p>Vibración severa detectada en el eje delantero durante pruebas de frenado. Los discos presentan deformaciones físicas por fatiga térmica.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3><i class="fa-solid fa-hand-holding-dollar text-exito"></i> Costos y Justificación de Repuestos</h3>
+                    <div class="tabla-piezas-cliente">
+                        <div class="tabla-header-p">
+                            <span>Pieza / Acción</span>
+                            <span>Motivo Técnico</span>
+                            <span>Valor</span>
+                        </div>
+                        <div class="tabla-row-p">
+                            <td><strong>Discos Delanteros</strong></td>
+                            <td>Superficie deformada, compromete frenado seguro.</td>
+                            <td><strong class="text-pizarra">$240.000 COP</strong></td>
+                        </div>
+                    </div>
+                    <div class="total-box">
+                        <span>Total Neto Estimado:</span>
+                        <span class="monto-total">$240.000 COP</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+
+const usuario =
+JSON.parse(localStorage.getItem("usuario"));
+
+if(usuario){
+
+    document.getElementById("bienvenida")
+    .innerHTML =
+    "Bienvenido " + usuario.nombre;
+}
+
+</script>
+
+</body>
+</html>
