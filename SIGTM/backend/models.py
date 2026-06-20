@@ -7,13 +7,16 @@ from database import Base
 class Usuario(Base):
     __tablename__ = "usuarios"
 
-    id = Column(Integer, primary_key=True, index=True)
+    id_usuario = Column(Integer, primary_key=True, index=True)
     nombre = Column(String)
     correo = Column(String, unique=True)
     password = Column(String)
     rol = Column(String)
 
-    vehiculos = relationship("Vehiculo", back_populates="usuario")
+    vehiculos = relationship(
+        "Vehiculo",
+        back_populates="usuario"
+    )
 
 # VEHICULOS
 class Vehiculo(Base):
@@ -24,10 +27,20 @@ class Vehiculo(Base):
     marca = Column(String)
     modelo = Column(String)
 
-    usuario_id = Column(Integer, ForeignKey("usuarios.id"))
+    id_usuario = Column(
+        Integer,
+        ForeignKey("usuarios.id_usuario")
+    )
 
-    usuario = relationship("Usuario", back_populates="vehiculos")
-    ordenes = relationship("OrdenServicio", back_populates="vehiculo")
+    usuario = relationship(
+        "Usuario",
+        back_populates="vehiculos"
+    )
+
+    ordenes = relationship(
+        "OrdenServicio",
+        back_populates="vehiculo"
+    )
 
 # ORDEN SERVICIO
 class OrdenServicio(Base):
