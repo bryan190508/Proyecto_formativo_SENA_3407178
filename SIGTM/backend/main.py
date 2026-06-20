@@ -29,3 +29,9 @@ app.include_router(vehiculos.router)
 app.include_router(ordenes.router)
 app.include_router(piezas.router)
 app.include_router(historial.router)
+
+@app.get("/")
+def inicio():
+    return {
+        "mensaje": "API AutoMétrica funcionando"
+    }
