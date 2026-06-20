@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 
 # USUARIO
+# USUARIO
 class UsuarioCreate(BaseModel):
     nombre:str
     correo:str
@@ -8,7 +9,7 @@ class UsuarioCreate(BaseModel):
     rol:str
 
 class UsuarioResponse(UsuarioCreate):
-    id:int
+    id_usuario:int
 
     class Config:
         from_attributes=True
@@ -18,7 +19,7 @@ class VehiculoCreate(BaseModel):
     placa:str
     marca:str
     modelo:str
-    usuario_id:int
+    id_usuario:int
 
 # ORDEN
 class OrdenCreate(BaseModel):
