@@ -14,10 +14,10 @@ CREATE TABLE vehiculos (
 
     id_usuario INTEGER NOT NULL,
 
-    CONSTRAINT fk_usuario
-        FOREIGN KEY(id_usuario)
-        REFERENCES usuarios(id_usuario)
-        ON DELETE CASCADE
+    CONSTRAINT fk_usuario_vehiculo
+    FOREIGN KEY (id_usuario)
+    REFERENCES usuarios(id_usuario)
+    ON DELETE CASCADE
 );
 
 CREATE TABLE ordenes_servicio (
@@ -27,14 +27,14 @@ CREATE TABLE ordenes_servicio (
 
     estado VARCHAR(50) NOT NULL,
 
-    diagnostico TEXT NOT NULL,
+    diagnostico VARCHAR(500),
 
     id_vehiculo INTEGER NOT NULL,
 
-    CONSTRAINT fk_vehiculo
-        FOREIGN KEY(id_vehiculo)
-        REFERENCES vehiculos(id_vehiculo)
-        ON DELETE CASCADE
+    CONSTRAINT fk_vehiculo_orden
+    FOREIGN KEY (id_vehiculo)
+    REFERENCES vehiculos(id_vehiculo)
+    ON DELETE CASCADE
 );
 
 CREATE TABLE piezas (
@@ -42,18 +42,18 @@ CREATE TABLE piezas (
 
     nombre VARCHAR(100) NOT NULL,
 
-    descripcion TEXT NOT NULL,
+    descripcion VARCHAR(500),
 
-    justificacion TEXT NOT NULL,
+    justificacion VARCHAR(500),
 
-    precio NUMERIC(12,2) NOT NULL,
+    precio NUMERIC(12,2),
 
     id_orden INTEGER NOT NULL,
 
-    CONSTRAINT fk_orden
-        FOREIGN KEY(id_orden)
-        REFERENCES ordenes_servicio(id_orden)
-        ON DELETE CASCADE
+    CONSTRAINT fk_orden_pieza
+    FOREIGN KEY (id_orden)
+    REFERENCES ordenes_servicio(id_orden)
+    ON DELETE CASCADE
 );
 
 CREATE TABLE historial_servicio (
@@ -61,14 +61,20 @@ CREATE TABLE historial_servicio (
 
     fecha DATE NOT NULL,
 
-    descripcion TEXT NOT NULL,
+    descripcion VARCHAR(500),
 
     id_vehiculo INTEGER NOT NULL,
 
-    CONSTRAINT fk_historial_vehiculo
-        FOREIGN KEY(id_vehiculo)
-        REFERENCES vehiculos(id_vehiculo)
-        ON DELETE CASCADE
+    CONSTRAINT fk_vehiculo_historial
+    FOREIGN KEY (id_vehiculo)
+    REFERENCES vehiculos(id_vehiculo)
+    ON DELETE CASCADE
 );
 
-select * from usuarios;
+SELECT * FROM usuarios;
+SELECT * FROM vehiculos;
+SELECT * FROM ordenes_servicio;
+SELECT * FROM piezas;
+SELECT * FROM historial_servicio;
+
+SELECT current_user;
