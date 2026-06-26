@@ -1,0 +1,11 @@
+¿Que tenemos en el proyecto Sistema Web de Gestión y Seguimiento para Talleres Mecánicos?
+
+Primera parte
+- PAGINA PRINCIPAL
+Index:
+-Manejamos colores neutros tipo azul, azul oscuro y blanco.
+-Lo primero que vemos al entrar al Index es:
+-Que queremos hacer y una explicacion sencilla de lo que vamos a hacer
+-Tenemos un boton de Comenzar ahora y Explorar Modulos
+Boton COMENZAR AHORA: Este boton nos lleva al apartado de Registrarse, haciendo que el cliente o mecanico tenga la facilida de poder ingresar sus datos
+Boton EXPLORAR MODULOS: Este nos deja en la misma pagina principal que nos deja ver mas sobre Nuestro Sistema Web
