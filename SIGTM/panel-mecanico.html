@@ -13,25 +13,67 @@
 <body>
 
     <div class="dashboard-container">
-        <aside class="sidebar">
-            <div class="sidebar-brand">
-                <i class="fa-solid fa-square-poll-vertical text-electrico"></i> AutoMétrica
-            </div>
-            <div class="user-profile">
-                <i class="fa-solid fa-user-gear profile-icon"></i>
-                <div>
-                    <h4>Carlos Mendoza</h4>
-                    <span>Admin / Mecánico</span>
+        <aside class="sidebar-cliente">
+            <nav class="portal-nav">
+                <div class="logo">
+                    <i class="fa-solid fa-square-poll-vertical text-electrico"></i> Auto<span>Métrica</span>
                 </div>
-            </div>
-            <ul class="sidebar-menu">
-                <li class="active"><a href="#"><i class="fa-solid fa-folder-plus"></i> Órdenes de Servicio</a></li>
-                <li><a href="gestion-vehiculos.html"><i class="fa-solid fa-car"></i> Gestión de Vehículos</a></li>
-                <li><a href="clientes.html"><i class="fa-solid fa-users"></i> Base de Clientes</a></li>
-                <li class="menu-logout"><a href="index.html"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a></li>
-            </ul>
-        </aside>
+            </nav>
 
+    <div class="perfil-cliente">
+
+        <i class="fa-solid fa-user-gear"></i>
+
+        <h3>Carlos Mendoza</h3>
+
+        <span>Mecánico Principal</span>
+
+    </div>
+
+    <nav class="menu-cliente">
+
+        <a href="#" class="activo">
+            <i class="fa-solid fa-clipboard-list"></i>
+            Órdenes de Servicio
+        </a>
+
+        <a href="gestion-vehiculos.html">
+            <i class="fa-solid fa-car"></i>
+            Vehículos
+        </a>
+
+        <a href="clientes.html">
+            <i class="fa-solid fa-users"></i>
+            Clientes
+        </a>
+
+        <a href="#">
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+            Reparaciones
+        </a>
+
+        <a href="#">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+            Historial
+        </a>
+
+        <a href="#">
+            <i class="fa-solid fa-chart-line"></i>
+            Reportes
+        </a>
+
+    </nav>
+
+    <div class="logout-cliente">
+
+        <a href="index.html">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Cerrar Sesión
+        </a>
+
+    </div>
+
+</aside>
         <main class="main-content">
             <header class="main-header">
                 <h2>Gestión de Órdenes de Trabajo</h2>
@@ -122,38 +164,6 @@
             </section>
         </main>
     </div>
-
-    <form id="vehiculoForm">
-
-    <input
-        type="text"
-        id="placa"
-        placeholder="Placa"
-    >
-
-    <input
-        type="text"
-        id="marca"
-        placeholder="Marca"
-    >
-
-    <input
-        type="text"
-        id="modelo"
-        placeholder="Modelo"
-    >
-
-    <input
-        type="number"
-        id="usuario_id"
-        placeholder="ID Cliente"
-    >
-
-    <button>
-        Registrar Vehículo
-    </button>
-
-</form>
 
 <script src="js/mecanico.js"></script>
 
