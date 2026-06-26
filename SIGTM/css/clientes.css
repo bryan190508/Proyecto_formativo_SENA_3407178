@@ -78,3 +78,115 @@ td{
     padding:15px;
     border-bottom:1px solid #eee;
 }
+
+/* ==========================================================
+   MENU LATERAL MECÁNICO / ADMINISTRADOR
+   ========================================================== */
+
+.layout-cliente,
+.dashboard-container{
+    display:flex;
+    min-height:100vh;
+}
+
+.sidebar-cliente{
+    width:280px;
+    background:#07132d;
+    color:white;
+    display:flex;
+    flex-direction:column;
+    padding:25px 20px;
+}
+
+.portal-nav{
+    background:#0b1738;
+    border-radius:10px;
+    padding:18px;
+    margin-bottom:15px;
+}
+
+.perfil-cliente{
+    background:#102767;
+    border-radius:14px;
+    padding:22px;
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.perfil-cliente i{
+    font-size:60px;
+    color:#1da1f2;
+    margin-bottom:12px;
+}
+
+.perfil-cliente h3{
+    color:white;
+    font-size:18px;
+    margin:5px 0;
+}
+
+.perfil-cliente span{
+    color:#d1d5db;
+    font-size:14px;
+}
+
+.menu-cliente{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.menu-cliente a{
+    text-decoration:none;
+    color:white;
+    padding:14px 18px;
+    border-radius:12px;
+    transition:.3s;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:15px;
+    font-weight:600;
+}
+
+.menu-cliente a:hover{
+    background:#1292db;
+}
+
+.menu-cliente a.activo{
+    background:#1292db;
+    color:white;
+}
+
+.logout-cliente{
+    margin-top:auto;
+    padding-top:40px;
+}
+
+.logout-cliente a{
+    text-decoration:none;
+    color:#ff6b6b;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:700;
+}
+
+.contenido-cliente,
+.main-content{
+    flex:1;
+    overflow-y:auto;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:white;
+    font-size:28px;
+    font-weight:700;
+}
+
+.logo i{
+    color:#1292db;
+}
