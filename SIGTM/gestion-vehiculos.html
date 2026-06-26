@@ -5,11 +5,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de Vehículos | AutoMétrica</title>
     <link rel="stylesheet" href="css/gestion-vehiculos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <div class="main-content">
+
+<div class="layout-cliente">
+
+    <!-- MENÚ LATERAL -->
+    <aside class="sidebar-cliente">
+
+    <nav class="portal-nav">
+        <div class="logo">
+            <i class="fa-solid fa-square-poll-vertical text-electrico"></i> Auto<span>Métrica</span>
+        </div>
+    </nav>
+
+    <div class="perfil-cliente">
+        <i class="fa-solid fa-user-gear"></i>
+
+        <h3>Carlos Mendoza</h3>
+
+        <span>Mecánico Principal</span>
+    </div>
+
+    <nav class="menu-cliente">
+
+        <a href="panel-mecanico.html">
+            <i class="fa-solid fa-clipboard-list"></i>
+            Órdenes de Servicio
+        </a>
+
+        <a href="gestion-vehiculos.html" class="activo">
+            <i class="fa-solid fa-car"></i>
+            Vehículos
+        </a>
+
+        <a href="clientes.html">
+            <i class="fa-solid fa-users"></i>
+            Clientes
+        </a>
+
+        <a href="reparaciones.html">
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+            Reparaciones
+        </a>
+
+        <a href="historial.html">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+            Historial
+        </a>
+
+        <a href="reportes.html">
+            <i class="fa-solid fa-chart-line"></i>
+            Reportes
+        </a>
+
+    </nav>
+
+    <div class="logout-cliente">
+        <a href="index.html">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Cerrar Sesión
+        </a>
+    </div>
+
+</aside>
+
+    <!-- CONTENIDO DE LA PÁGINA -->
+    <main class="contenido-cliente">
+
+        <div class="main-content">
         <div class="header">
             <h1>Gestión de Vehículos</h1>
             
@@ -92,5 +160,10 @@
         </div>
 
     </div>
+
+    </main>
+
+</div>
+
 </body>
 </html>
