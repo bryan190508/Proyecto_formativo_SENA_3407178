@@ -1,11 +1,31 @@
-¿Que tenemos en el proyecto Sistema Web de Gestión y Seguimiento para Talleres Mecánicos?
+AutoMétrica
 
-Primera parte
-- PAGINA PRINCIPAL
-Index:
--Manejamos colores neutros tipo azul, azul oscuro y blanco.
--Lo primero que vemos al entrar al Index es:
--Que queremos hacer y una explicacion sencilla de lo que vamos a hacer
--Tenemos un boton de Comenzar ahora y Explorar Modulos
-Boton COMENZAR AHORA: Este boton nos lleva al apartado de Registrarse, haciendo que el cliente o mecanico tenga la facilida de poder ingresar sus datos
-Boton EXPLORAR MODULOS: Este nos deja en la misma pagina principal que nos deja ver mas sobre Nuestro Sistema Web
+Sistema Web de Gestión y Seguimiento para Talleres Mecánicos
+
+¿Qué es AutoMétrica?
+AutoMétrica surge de un problema real que enfrentan los talleres mecánicos. Ellos manejan toda la información en papel, lo que hace que los clientes no estén informados sobre el trabajo que se está realizando en su vehículo. Además, los costos pueden ser una sorpresa al final. Nuestra aplicación busca cambiar esta situación.
+La idea es muy simple. El mecánico puede actualizar el estado del vehículo desde su panel de control. De esta manera, el cliente puede ver en tiempo real lo que está sucediendo con su vehículo, qué piezas se están cambiando y cuánto costará todo. Esto se puede hacer desde un celular o un computador, lo que evita sorpresas desagradables.
+Páginas del Sistema
+El FrontEnd de AutoMétrica se divide en diferentes módulos según el tipo de usuario, que puede ser un mecánico o un cliente:
+
+🏠  index.html — Esta es la página principal del proyecto. Aquí se explica qué hace el sistema, se muestran los diferentes módulos y hay un formulario de contacto para obtener soporte.
+🔐  login.html / registro.html — Estas son las páginas para acceder al sistema. Los formularios son fáciles de usar y se validan para asegurarse de que la información sea correcta. Esto aplica tanto para los clientes como para los mecánicos.
+🔧  panel-mecanico.html — Esta es la página más importante del sistema. Aquí es donde el mecánico puede abrir órdenes de servicio, cambiar el estado del proceso y justificar cada pieza con su precio correspondiente.
+🚗  gestion-vehiculos.html — Esta página ofrece un registro completo de los vehículos, incluyendo la placa, la marca, el modelo, el kilometraje y el estado. También cuenta con una barra de navegación lateral para facilitar la búsqueda de información.
+👤  clientes.html — Esta es la base de datos de los clientes. Aquí se guardan los datos del cliente, como el nombre, la cédula, el teléfono y el correo electrónico, en una tabla y un formulario.
+📱  portal-cliente.html — Esta es la página que los clientes usarán para ver el estado de su vehículo. Aquí se muestra una línea de tiempo interactiva que indica el progreso del trabajo, desde que el vehículo es recibido hasta que el trabajo está finalizado. También se muestra el desglose de los costos en tiempo real.
+
+¿Con qué está hecho AutoMétrica?
+No usamos frameworks complejos en este proyecto. En su lugar, nos enfocamos en utilizar tecnologías básicas de manera efectiva:
+•	HTML5 — Usamos HTML5 para crear la estructura semántica de los formularios, las tablas, las barras de navegación y las secciones de la página.
+•	CSS3 — Con CSS3, creamos estilos personalizados, layouts responsivos y utilizamos tipografías de Google Fonts como Poppins, Montserrat y Roboto. También incluímos tarjetas, botones y alertas visuales para mejorar la experiencia del usuario.
+•	FontAwesome v6.4.0 — Usamos iconos vectoriales de FontAwesome para la navegación y los paneles, lo que hace que la página sea más atractiva y fácil de usar.
+•	JavaScript (Vanilla JS) — Utilizamos JavaScript para manejar la lógica del navegador, validar los formularios, crear interacciones visuales y almacenar datos temporalmente con localStorage.
+
+Cómo abrir AutoMétrica en tu computador
+No necesitas instalar nada especial para abrir AutoMétrica en tu computador. Simplemente sigue estos pasos:
+1.	Clona o descarga el repositorio en tu computador.
+2.	Asegúrate de mantener la estructura de carpetas tal como está. Los archivos HTML deben estar en la raíz y los estilos deben estar dentro de la carpeta css/.
+3.	Haz doble clic en index.html para abrir la página principal de AutoMétrica en tu navegador.
+4.	Para explorar los diferentes paneles, ve a la sección de 'Iniciar Sesión', elige el tipo de cuenta que deseas y navega entre las interfaces del mecánico o del cliente.
+
