@@ -12,12 +12,76 @@
 </head>
 <body>
 
-    <div class="portal-cliente-layout">
+<div class="layout-cliente">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar-cliente">
+
+            <nav class="portal-nav">
+                <div class="logo"><i class="fa-solid fa-square-poll-vertical text-electrico"></i> AutoMétrica</div>
+            </nav>
+        
+        <div class="perfil-cliente">
+            <i class="fa-solid fa-user-circle"></i>
+            <h3>Jesús Perdomo</h3>
+            <span>Cliente</span>
+        </div>
+
+        <nav class="menu-cliente">
+
+            <a href="#" class="activo">
+                <i class="fa-solid fa-house"></i>
+                Inicio
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-car"></i>
+                Mis Vehículos
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-clipboard-list"></i>
+                Mis Órdenes
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+                Historial
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-money-bill-wave"></i>
+                Costos
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-calendar-check"></i>
+                Próximos Servicios
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-phone"></i>
+                Contactar Taller
+            </a>
+
+        </nav>
+
+        <div class="logout-cliente">
+            <a href="index.html">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Cerrar Sesión
+            </a>
+        </div>
+
+    </aside>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="contenido-cliente">
+
+        <div class="portal-cliente-layout">
         <nav class="portal-nav">
-            <div class="logo"><i class="fa-solid fa-square-poll-vertical text-electrico"></i> AutoMétrica Cliente</div>
             <div class="nav-user-info">
                 <span>Vehículo: <strong>Mazda 3 (ABC-123)</strong></span>
-                <a href="index.html" class="btn-salir-portal"><i class="fa-solid fa-arrow-right-from-bracket"></i> Salir</a>
             </div>
         </nav>
 
@@ -93,6 +157,10 @@ if(usuario){
 }
 
 </script>
+
+    </main>
+
+</div>
 
 </body>
 </html>
