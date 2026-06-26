@@ -2,7 +2,6 @@
    ESTILOS GENERALES PARA ENTORNO PRIVADO (DASHBOARD)
    ========================================================================== */
 :root {
-    --fondo-general: #F8FAFC;
     --contenedor-blanco: #FFFFFF;
     --estructura-menus: #0F172A;
     --texto-principal: #334155;
@@ -18,6 +17,21 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
 body { background-color: var(--fondo-general); color: var(--texto-principal); }
+.contenido-cliente{
+    flex:1;
+
+    background:
+        linear-gradient(
+            rgba(255,255,255,0.80),
+            rgba(255,255,255,0.80)
+        ),
+        url("../img/fondoimg.avif");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
 
 .text-electrico { color: var(--accion-electrico); }
 .text-pizarra { color: var(--estructura-menus); }
@@ -134,4 +148,107 @@ h4,h5,h6{
 /* Párrafos */
 p,label,input,textarea,select,a{
     font-family: 'Roboto', sans-serif;
+}
+
+/* SIDEBAR CLIENTE */
+.layout-cliente{
+    display:flex;
+    min-height:100vh;
+}
+
+.sidebar-cliente{
+    width:280px;
+    background:#07132d;
+    color:white;
+    display:flex;
+    flex-direction:column;
+    padding:25px 20px;
+}
+
+.logo-cliente{
+    margin-bottom:30px;
+}
+
+.logo-cliente h2{
+    color:white;
+    font-size:32px;
+    font-weight:700;
+}
+
+.perfil-cliente{
+    background:#0d1d45;
+    border-radius:12px;
+    padding:20px;
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.perfil-cliente i{
+    font-size:50px;
+    color:#1292db;
+    margin-bottom:10px;
+}
+
+.perfil-cliente h3{
+    margin:5px 0;
+}
+
+.perfil-cliente span{
+    color:#b8c5d6;
+    font-size:14px;
+}
+
+.menu-cliente{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.menu-cliente a{
+    text-decoration:none;
+    color:white;
+    padding:14px 18px;
+    border-radius:10px;
+    transition:0.3s;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-weight:500;
+}
+
+.menu-cliente a:hover{
+    background:#1292db;
+}
+
+.menu-cliente .activo{
+    background:#1292db;
+}
+
+.logout-cliente{
+    margin-top:auto;
+}
+
+.logout-cliente a{
+    text-decoration:none;
+    color:#ff6b6b;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:600;
+}
+
+.contenido-cliente{
+    flex:1;
+    padding:0;
+    overflow-y:auto;
+}
+
+.seccion-fondo{
+    background:
+        linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+        url("/img/fondoimg.avif");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
