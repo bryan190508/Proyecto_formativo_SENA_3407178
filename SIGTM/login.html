@@ -118,37 +118,6 @@
 </div>
 
 <script src="js/login.js"></script>
-<script>
-    function togglePassword(inputId, btn) {
-        const input = document.getElementById(inputId);
-        const icon = btn.querySelector('i');
-        if (input.type === 'password') {
-            input.type = 'text';
-            icon.classList.replace('fa-eye', 'fa-eye-slash');
-        } else {
-            input.type = 'password';
-            icon.classList.replace('fa-eye-slash', 'fa-eye');
-        }
-    }
-
-    function abrirModal(e) {
-        e.preventDefault();
-        document.getElementById('modalTerminos').classList.add('open');
-    }
-
-    function cerrarModal() {
-        document.getElementById('modalTerminos').classList.remove('open');
-    }
-
-    function aceptarYCerrar() {
-        document.getElementById('terms-login').checked = true;
-        cerrarModal();
-    }
-
-    document.getElementById('modalTerminos').addEventListener('click', function(e) {
-        if (e.target === this) cerrarModal();
-    });
-</script>
 
 </body>
 </html>
