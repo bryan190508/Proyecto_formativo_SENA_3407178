@@ -2,7 +2,140 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Vehículos | AutoMétrica</title>
+    <link rel="stylesheet" href="css/shared-sidebar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Montserrat:wght@600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="layout-cliente">
+    <aside class="sidebar-cliente">
+        <div class="sidebar-logo">
+            <div class="logo-text">
+                <i class="fa-solid fa-square-poll-vertical"></i>
+                Auto<span>Métrica</span>
+            </div>
+        </div>
+        <div class="perfil-cliente">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=160&h=160&fit=crop&crop=face" alt="Carlos Mendoza" class="perfil-avatar">
+            <h3>Carlos Mendoza</h3>
+            <span>Mecánico Principal</span>
+        </div>
+        <nav class="menu-cliente">
+            <a href="panel-mecanico.html"><i class="fa-solid fa-clipboard-list"></i> Órdenes de Servicio</a>
+            <a href="gestion-vehiculos.html" class="activo"><i class="fa-solid fa-car"></i> Vehículos</a>
+            <a href="clientes.html"><i class="fa-solid fa-users"></i> Clientes</a>
+            <a href="reparaciones.html"><i class="fa-solid fa-screwdriver-wrench"></i> Reparaciones</a>
+            <a href="historial.html"><i class="fa-solid fa-clock-rotate-left"></i> Historial</a>
+            <a href="reportes.html"><i class="fa-solid fa-chart-line"></i> Reportes</a>
+        </nav>
+        <div class="logout-cliente">
+            <a href="index.html"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a>
+        </div>
+    </aside>
+
+    <main class="contenido-cliente">
+        <div class="main-content">
+            <div class="page-header">
+                <div class="page-header-text">
+                    <p class="eyebrow">Panel de control</p>
+                    <h1>Gestión de Vehículos</h1>
+                </div>
+                <button class="btn-primary"><i class="fa-solid fa-plus"></i> Nuevo Vehículo</button>
+            </div>
+
+            <!-- Banner -->
+            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1200&h=300&fit=crop" alt="Vehículos" class="section-banner">
+
+            <!-- Stats -->
+            <div class="stats-row">
+                <div class="stat-card">
+                    <div class="stat-icon azul"><i class="fa-solid fa-car"></i></div>
+                    <div><div class="stat-value">24</div><div class="stat-label">Total Vehículos</div></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon amarillo"><i class="fa-solid fa-wrench"></i></div>
+                    <div><div class="stat-value">8</div><div class="stat-label">En Taller</div></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon verde"><i class="fa-solid fa-check-circle"></i></div>
+                    <div><div class="stat-value">14</div><div class="stat-label">Activos</div></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon rojo"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                    <div><div class="stat-value">2</div><div class="stat-label">Retrasados</div></div>
+                </div>
+            </div>
+
+            <!-- Registro -->
+            <div class="card">
+                <div class="card-header-row">
+                    <div class="card-icon-box"><i class="fa-solid fa-car-side"></i></div>
+                    <div><h2>Registro de Vehículo</h2><p>Completa los datos y guarda el vehículo en el sistema.</p></div>
+                </div>
+                <div class="form-grid">
+                    <div class="form-group"><label><i class="fa-solid fa-hashtag"></i> Placa</label><input type="text" placeholder="Ej. ABC-123"></div>
+                    <div class="form-group"><label><i class="fa-solid fa-car"></i> Marca</label><input type="text" placeholder="Ej. Mazda"></div>
+                    <div class="form-group"><label><i class="fa-solid fa-tag"></i> Modelo</label><input type="text" placeholder="Ej. Mazda 3"></div>
+                    <div class="form-group"><label><i class="fa-solid fa-calendar"></i> Año</label><input type="number" placeholder="Ej. 2022"></div>
+                    <div class="form-group"><label><i class="fa-solid fa-palette"></i> Color</label><input type="text" placeholder="Ej. Blanco"></div>
+                    <div class="form-group"><label><i class="fa-solid fa-gauge-high"></i> Kilometraje</label><input type="number" placeholder="Ej. 45000"></div>
+                </div>
+                <button class="btn-primary" onclick="alert('Vehículo guardado.')"><i class="fa-solid fa-floppy-disk"></i> Guardar Vehículo</button>
+            </div>
+
+            <!-- Tarjetas de vehículos en taller -->
+            <div class="card">
+                <div class="card-header-row">
+                    <div class="card-icon-box"><i class="fa-solid fa-garage"></i></div>
+                    <div><h2>Vehículos en Taller Actualmente</h2><p>Vista visual de los vehículos bajo servicio.</p></div>
+                </div>
+                <div class="vehicle-cards">
+                    <div class="vehicle-card">
+                        <img src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=400&h=220&fit=crop" alt="Mazda 3">
+                        <div class="vehicle-card-body"><strong>Mazda 3</strong><span>ABC-123 · 2021 · Blanco</span></div>
+                        <div class="vehicle-card-footer"><span style="font-size:12px;color:#64748b">45,200 km</span><span class="badge badge-reparacion">En Taller</span></div>
+                    </div>
+                    <div class="vehicle-card">
+                        <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=400&h=220&fit=crop" alt="Chevrolet Onix">
+                        <div class="vehicle-card-body"><strong>Chevrolet Onix</strong><span>XYZ-789 · 2020 · Gris</span></div>
+                        <div class="vehicle-card-footer"><span style="font-size:12px;color:#64748b">72,400 km</span><span class="badge badge-retrasado">Retrasado</span></div>
+                    </div>
+                    <div class="vehicle-card">
+                        <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=400&h=220&fit=crop" alt="Renault Sandero">
+                        <div class="vehicle-card-body"><strong>Renault Sandero</strong><span>KJI-567 · 2019 · Rojo</span></div>
+                        <div class="vehicle-card-footer"><span style="font-size:12px;color:#64748b">88,000 km</span><span class="badge badge-finalizado">Finalizado</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabla -->
+            <div class="card">
+                <div class="card-header-row">
+                    <div class="card-icon-box"><i class="fa-solid fa-list-ul"></i></div>
+                    <div><h2>Todos los Vehículos Registrados</h2><p>Listado completo del sistema.</p></div>
+                </div>
+                <table>
+                    <thead><tr><th>Placa</th><th>Marca</th><th>Modelo</th><th>Año</th><th>Estado</th></tr></thead>
+                    <tbody>
+                        <tr><td>ABC-123</td><td>Mazda</td><td>Mazda 3</td><td>2021</td><td><span class="badge badge-reparacion">En Taller</span></td></tr>
+                        <tr><td>XYZ-789</td><td>Chevrolet</td><td>Onix</td><td>2020</td><td><span class="badge badge-retrasado">Retrasado</span></td></tr>
+                        <tr><td>KJI-567</td><td>Renault</td><td>Sandero</td><td>2019</td><td><span class="badge badge-finalizado">Finalizado</span></td></tr>
+                        <tr><td>LMN-321</td><td>Toyota</td><td>Corolla</td><td>2022</td><td><span class="badge badge-activo">Activo</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>
+
     <title>Gestión de Vehículos | AutoMétrica</title>
     <link rel="stylesheet" href="css/shared-sidebar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
