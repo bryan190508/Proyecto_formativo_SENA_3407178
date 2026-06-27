@@ -3,121 +3,151 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AutoMétrica - Iniciar Sesión</title>
-    <link rel="stylesheet" href="css/auth.css">
+    <title>AutoMétrica - Panel Técnico</title>
+    <link rel="stylesheet" href="css/shared-sidebar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Montserrat:wght@600;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
+<div class="layout-cliente">
+    <aside class="sidebar-cliente">
+        <div class="sidebar-logo">
+            <div class="logo-text">
+                <i class="fa-solid fa-square-poll-vertical"></i>
+                Auto<span>Métrica</span>
+            </div>
+        </div>
+        <div class="perfil-cliente">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=160&h=160&fit=crop&crop=face" 
+                 alt="Carlos Mendoza" class="perfil-avatar">
+            <h3>Carlos Mendoza</h3>
+            <span>Mecánico Principal</span>
+        </div>
+        <nav class="menu-cliente">
+            <a href="panel-mecanico.html" class="activo"><i class="fa-solid fa-clipboard-list"></i> Órdenes de Servicio</a>
+            <a href="gestion-vehiculos.html"><i class="fa-solid fa-car"></i> Vehículos</a>
+            <a href="clientes.html"><i class="fa-solid fa-users"></i> Clientes</a>
+            <a href="reparaciones.html"><i class="fa-solid fa-screwdriver-wrench"></i> Reparaciones</a>
+            <a href="historial.html"><i class="fa-solid fa-clock-rotate-left"></i> Historial</a>
+            <a href="reportes.html"><i class="fa-solid fa-chart-line"></i> Reportes</a>
+        </nav>
+        <div class="logout-cliente">
+            <a href="index.html"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a>
+        </div>
+    </aside>
 
-<div class="auth-wrapper">
-
-    <!-- Imagen lateral -->
-    <div class="auth-banner">
-        <img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1200&q=80" alt="Taller mecánico">
-        <div class="banner-text">
-            <a href="index.html" class="auth-logo">
-                <div class="logo-icon">
-                    <span></span><span></span><span></span>
-                    <div class="logo-dot"></div>
+    <main class="contenido-cliente">
+        <div class="main-content">
+            <div class="page-header">
+                <div class="page-header-text">
+                    <p class="eyebrow">Panel de control</p>
+                    <h1>Gestión de Órdenes de Trabajo</h1>
                 </div>
-                <span class="logo-text">AutoMétrica</span>
-            </a>
-            <p>Sistema de gestión para talleres mecánicos.<br>Controla órdenes, vehículos y clientes en un solo lugar.</p>
-        </div>
-    </div>
-
-    <!-- Formulario -->
-    <div class="auth-card">
-        <div class="auth-header">
-            <a href="index.html" class="link-volver"><i class="fa-solid fa-arrow-left"></i> Volver</a>
-            <h2>Bienvenido de nuevo</h2>
-            <p>Ingresa tus credenciales para continuar.</p>
-        </div>
-
-        <div class="auth-tabs">
-            <a href="login.html" class="tab-link active">Iniciar sesión</a>
-            <a href="registro.html" class="tab-link">Registrarse</a>
-        </div>
-
-        <form id="loginForm" class="auth-form">
-            <div class="form-group">
-                <label for="email"><i class="fa-solid fa-envelope"></i> Correo electrónico</label>
-                <input type="email" id="email" placeholder="nombre@taller.com" required>
+                <button class="btn-primary" onclick="alert('Abriendo formulario: Nueva Orden')">
+                    <i class="fa-solid fa-plus"></i> Nueva Orden
+                </button>
             </div>
 
-            <div class="form-group">
-                <label for="password"><i class="fa-solid fa-lock"></i> Contraseña</label>
-                <div class="input-password-wrapper">
-                    <input type="password" id="password" placeholder="••••••••" required>
-                    <button type="button" class="toggle-password" onclick="togglePassword('password', this)">
-                        <i class="fa-solid fa-eye"></i>
+            <!-- Banner imagen taller -->
+            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&h=320&fit=crop" 
+                 alt="Taller mecánico" class="section-banner">
+
+            <div class="panel-grid">
+                <!-- FORMULARIO -->
+                <div class="card">
+                    <div class="card-header-row">
+                        <div class="card-icon-box"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+                        <div>
+                            <h2>Actualización de Servicio Técnico</h2>
+                            <p>Registra el diagnóstico y justifica los costos asociados al vehículo.</p>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div>
+                            <label class="form-label">Vehículo / Placa</label>
+                            <input type="text" value="Mazda 3 (ABC-123)" disabled class="form-input">
+                        </div>
+                        <div>
+                            <label class="form-label">Estado del Proceso</label>
+                            <select class="form-select">
+                                <option>Recibido</option>
+                                <option>En Diagnóstico</option>
+                                <option selected>En Reparación (Amarillo)</option>
+                                <option>Servicio Finalizado (Verde)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div style="margin-top:14px">
+                        <label class="form-label">Diagnóstico Inicial Técnico</label>
+                        <textarea rows="2" class="form-textarea">Vibración severa en el tren delantero al aplicar fuerza en el pedal de freno a altas velocidades.</textarea>
+                    </div>
+
+                    <div class="pieza-box">
+                        <h4><i class="fa-solid fa-puzzle-piece" style="color:#0284C7"></i> Componente o Pieza a Intervenir</h4>
+                        <div class="form-row">
+                            <div>
+                                <label class="form-label">Nombre de la Pieza</label>
+                                <input type="text" value="Discos de Freno Delanteros" class="form-input">
+                            </div>
+                            <div>
+                                <label class="form-label">Precio ($ COP)</label>
+                                <input type="text" value="240.000" class="form-input">
+                            </div>
+                        </div>
+                        <div style="margin-top:12px">
+                            <label class="form-label">Descripción y Justificación del Cambio</label>
+                            <textarea rows="2" class="form-textarea">Desgaste térmico severo y deformación en la superficie de fricción del disco izquierdo. Requiere reemplazo inmediato para asegurar el frenado.</textarea>
+                        </div>
+                    </div>
+
+                    <button class="btn-primary btn-block" style="margin-top:18px" onclick="alert('Orden guardada y actualizada.')">
+                        <i class="fa-solid fa-floppy-disk"></i> Guardar Cambios de la Orden
                     </button>
                 </div>
+
+                <!-- LISTA VEHÍCULOS -->
+                <div class="card">
+                    <div class="card-header-row">
+                        <div class="card-icon-box"><i class="fa-solid fa-gauge-high"></i></div>
+                        <div>
+                            <h2>Monitoreo de Vehículos en Taller</h2>
+                            <p>Flujo operativo y trazabilidad actual.</p>
+                        </div>
+                    </div>
+
+                    <!-- Foto taller pequeño -->
+                    <img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=600&h=140&fit=crop" 
+                         alt="Vehículos en taller" style="width:100%;height:100px;object-fit:cover;border-radius:8px;margin-bottom:16px;">
+
+                    <div class="lista-ordenes">
+                        <div class="item-orden item-borde-proceso">
+                            <div class="item-info">
+                                <strong>Mazda 3 [ABC-123]</strong>
+                                <p>Cambio de componentes de fricción</p>
+                            </div>
+                            <span class="status-pill pill-proceso">En Reparación</span>
+                        </div>
+                        <div class="item-orden item-borde-peligro">
+                            <div class="item-info">
+                                <strong>Chevrolet Onix [XYZ-789]</strong>
+                                <p>Fallo crítico en sistema de refrigeración</p>
+                            </div>
+                            <span class="status-pill pill-peligro">Retrasado</span>
+                        </div>
+                        <div class="item-orden item-borde-exito">
+                            <div class="item-info">
+                                <strong>Renault Sandero [KJI-567]</strong>
+                                <p>Mantenimiento preventivo general</p>
+                            </div>
+                            <span class="status-pill pill-exito">Finalizado</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <div class="form-group">
-                <label for="login-rol"><i class="fa-solid fa-user-gear"></i> Tipo de cuenta</label>
-                <select id="login-rol" required>
-                    <option value="mecanico">Mecánico</option>
-                    <option value="cliente">Cliente</option>
-                </select>
-            </div>
-
-            <div class="form-check">
-                <input type="checkbox" id="terms-login">
-                <label for="terms-login">Al iniciar sesión aceptas nuestros <a href="#" class="text-link" onclick="abrirModal(event)">Términos y Condiciones</a>.</label>
-            </div>
-
-            <button type="submit" class="btn btn-electrico btn-block">Ingresar</button>
-        </form>
-
-        <div class="auth-footer">
-            <p>¿No tienes cuenta? <a href="registro.html" class="text-link">Regístrate aquí</a></p>
         </div>
-    </div>
+    </main>
 </div>
-
-<!-- Modal Términos -->
-<div class="modal-backdrop" id="modalTerminos">
-    <div class="modal">
-        <div class="modal-header">
-            <h3>Términos y Condiciones</h3>
-            <button class="modal-close" onclick="cerrarModal()"><i class="fa-solid fa-xmark"></i></button>
-        </div>
-        <div class="modal-body">
-            <p>Última actualización: junio de 2025</p>
-
-            <h4>1. Aceptación de los términos</h4>
-            <p>Al acceder y utilizar el sistema AutoMétrica, el usuario acepta cumplir con los presentes términos. Si no está de acuerdo, debe abstenerse de usar la plataforma.</p>
-
-            <h4>2. Uso del sistema</h4>
-            <p>AutoMétrica es una herramienta de gestión interna para talleres mecánicos. El acceso está restringido a usuarios registrados y autorizados. Queda prohibido el uso del sistema para fines distintos a los de gestión operativa del taller.</p>
-
-            <h4>3. Responsabilidad del usuario</h4>
-            <p>El usuario es responsable de mantener la confidencialidad de sus credenciales de acceso. Cualquier actividad realizada desde su cuenta es de su entera responsabilidad. Debe notificar de inmediato al administrador ante cualquier acceso no autorizado.</p>
-
-            <h4>4. Protección de datos</h4>
-            <p>La información registrada en el sistema (clientes, vehículos, órdenes de trabajo) es tratada con estricta confidencialidad. No se comparte con terceros sin autorización expresa del taller. Los datos se almacenan de forma segura conforme a la normativa vigente.</p>
-
-            <h4>5. Propiedad intelectual</h4>
-            <p>El software, diseño y contenido de AutoMétrica son propiedad de sus desarrolladores. No se permite reproducir, distribuir ni modificar el sistema sin autorización.</p>
-
-            <h4>6. Modificaciones</h4>
-            <p>AutoMétrica se reserva el derecho de actualizar estos términos en cualquier momento. El uso continuado del sistema implica la aceptación de los cambios.</p>
-
-            <h4>7. Contacto</h4>
-            <p>Para dudas o solicitudes, contacta al administrador del sistema a través de los canales oficiales del taller.</p>
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-electrico" onclick="aceptarYCerrar()">Entendido</button>
-        </div>
-    </div>
-</div>
-
-<script src="js/login.js"></script>
-
 </body>
 </html>
