@@ -1,0 +1,454 @@
+
+
+CREATE TABLE talleres (
+    id              SERIAL PRIMARY KEY,      
+    nombre          VARCHAR(100) NOT NULL,   
+    nit             VARCHAR(20)  UNIQUE,     
+    telefono        VARCHAR(20),
+    correo          VARCHAR(100) UNIQUE,
+    direccion       VARCHAR(200),
+    ciudad          VARCHAR(80),
+    logo_url        TEXT,                    
+    activo          BOOLEAN NOT NULL DEFAULT TRUE,  
+    fecha_creacion  TIMESTAMP NOT NULL DEFAULT NOW() 
+);
+
+CREATE TABLE usuarios (
+    id              SERIAL PRIMARY KEY,
+    taller_id       INT REFERENCES talleres(id) ON DELETE SET NULL,
+    
+    nombre_completo VARCHAR(150) NOT NULL,
+    correo          VARCHAR(100) NOT NULL UNIQUE,
+    contrasena_hash VARCHAR(255) NOT NULL,  
+    rol             VARCHAR(20)  NOT NULL
+                    CHECK (rol IN ('admin', 'mecanico', 'cliente')),
+    
+    telefono        VARCHAR(20),
+    activo          BOOLEAN NOT NULL DEFAULT TRUE,
+    fecha_registro  TIMESTAMP NOT NULL DEFAULT NOW(),
+    ultimo_acceso   TIMESTAMP   
+);
+
+CREATE TABLE clientes (
+    id          SERIAL PRIMARY KEY,
+    usuario_id  INT NOT NULL UNIQUE REFERENCES usuarios(id) ON DELETE CASCADE,
+    
+    
+    cedula      VARCHAR(20) UNIQUE,        
+    es_vip      BOOLEAN NOT NULL DEFAULT FALSE,  
+    notas       TEXT  
+);
+
+CREATE TABLE vehiculos (
+    id              SERIAL PRIMARY KEY,
+    cliente_id      INT NOT NULL REFERENCES clientes(id) ON DELETE CASCADE,
+    placa           VARCHAR(10) NOT NULL UNIQUE,  
+    tipo            VARCHAR(10) NOT NULL DEFAULT 'carro'
+                    CHECK (tipo IN ('carro', 'moto')),
+    marca           VARCHAR(50),            
+    modelo          VARCHAR(80),            
+    anio            SMALLINT,               
+    color           VARCHAR(40),
+    kilometraje_actual  INT DEFAULT 0,      
+    activo          BOOLEAN NOT NULL DEFAULT TRUE,
+    fecha_registro  TIMESTAMP NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE mecanicos (
+    id              SERIAL PRIMARY KEY,
+    usuario_id      INT NOT NULL UNIQUE REFERENCES usuarios(id) ON DELETE CASCADE,
+    taller_id       INT NOT NULL REFERENCES talleres(id) ON DELETE CASCADE,
+    especialidad    VARCHAR(100),   
+    activo          BOOLEAN NOT NULL DEFAULT TRUE
+);
+
+CREATE TABLE tipos_reparacion (
+    id          SERIAL PRIMARY KEY,
+    taller_id   INT REFERENCES talleres(id) ON DELETE CASCADE,
+    
+    nombre      VARCHAR(80) NOT NULL,
+    descripcion TEXT
+);
+
+CREATE TABLE ordenes_servicio (
+    id              SERIAL PRIMARY KEY,
+    taller_id       INT NOT NULL REFERENCES talleres(id),
+    vehiculo_id     INT NOT NULL REFERENCES vehiculos(id),
+    cliente_id      INT NOT NULL REFERENCES clientes(id),
+    mecanico_id     INT REFERENCES mecanicos(id) ON DELETE SET NULL,
+    tipo_reparacion_id  INT REFERENCES tipos_reparacion(id) ON DELETE SET NULL,
+
+    
+    numero_orden    VARCHAR(20) NOT NULL UNIQUE,
+
+    
+    estado          VARCHAR(30) NOT NULL DEFAULT 'Recibido'
+                    CHECK (estado IN (
+                        'Recibido',
+                        'En Diagnóstico',
+                        'En Reparación',
+                        'Servicio Finalizado',
+                        'Cancelado'
+                    )),
+
+    descripcion_problema    TEXT,       
+    diagnostico_tecnico     TEXT,       
+    costo_estimado          NUMERIC(12, 2),  
+    costo_final             NUMERIC(12, 2),  
+    kilometraje_ingreso     INT,             
+    es_urgente              BOOLEAN NOT NULL DEFAULT FALSE,
+
+    fecha_ingreso           TIMESTAMP NOT NULL DEFAULT NOW(),
+    fecha_estimada_entrega  DATE,       
+    fecha_finalizacion      TIMESTAMP,  
+
+    
+    calificacion            SMALLINT CHECK (calificacion BETWEEN 1 AND 5),
+    comentario_cliente      TEXT        
+);
+
+CREATE TABLE repuestos_orden (
+    id          SERIAL PRIMARY KEY,
+    orden_id    INT NOT NULL REFERENCES ordenes_servicio(id) ON DELETE CASCADE,
+    nombre_pieza    VARCHAR(150) NOT NULL,  
+    cantidad        SMALLINT NOT NULL DEFAULT 1,
+    precio_unitario NUMERIC(10, 2) NOT NULL,
+    
+    precio_total    NUMERIC(10, 2) GENERATED ALWAYS AS (cantidad * precio_unitario) STORED
+);
+
+CREATE TABLE historial_estados (
+    id              SERIAL PRIMARY KEY,
+    orden_id        INT NOT NULL REFERENCES ordenes_servicio(id) ON DELETE CASCADE,
+    usuario_id      INT REFERENCES usuarios(id) ON DELETE SET NULL, 
+    estado_anterior VARCHAR(30),
+    estado_nuevo    VARCHAR(30) NOT NULL,
+    observacion     TEXT,       
+    fecha_cambio    TIMESTAMP NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE mensajes (
+    id              SERIAL PRIMARY KEY,
+    taller_id       INT NOT NULL REFERENCES talleres(id),
+    orden_id        INT REFERENCES ordenes_servicio(id) ON DELETE SET NULL,
+    
+    remitente_id    INT NOT NULL REFERENCES usuarios(id),
+    asunto          VARCHAR(200),
+    contenido       TEXT NOT NULL,
+    leido           BOOLEAN NOT NULL DEFAULT FALSE,
+    fecha_envio     TIMESTAMP NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE proximos_servicios (
+    id              SERIAL PRIMARY KEY,
+    vehiculo_id     INT NOT NULL REFERENCES vehiculos(id) ON DELETE CASCADE,
+    taller_id       INT NOT NULL REFERENCES talleres(id),
+    descripcion     VARCHAR(200) NOT NULL,   
+    kilometraje_sugerido    INT,   
+    fecha_sugerida          DATE,  
+    completado      BOOLEAN NOT NULL DEFAULT FALSE,
+    fecha_creacion  TIMESTAMP NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE reportes_ingresos (
+    id          SERIAL PRIMARY KEY,
+    taller_id   INT NOT NULL REFERENCES talleres(id) ON DELETE CASCADE,
+    anio        SMALLINT NOT NULL,         
+    mes         SMALLINT NOT NULL          
+                CHECK (mes BETWEEN 1 AND 12),
+    total_ingresos      NUMERIC(14, 2) NOT NULL DEFAULT 0,
+    total_ordenes       INT NOT NULL DEFAULT 0,
+    tiempo_promedio_horas   NUMERIC(5, 2), 
+    satisfaccion_promedio   NUMERIC(3, 2), 
+    fecha_calculo           TIMESTAMP NOT NULL DEFAULT NOW(),
+
+    
+    UNIQUE (taller_id, anio, mes)
+);
+
+CREATE TABLE contactos_web (
+    id          SERIAL PRIMARY KEY,
+    nombre      VARCHAR(100) NOT NULL,
+    telefono    VARCHAR(20),
+    correo      VARCHAR(100) NOT NULL,
+    asunto      VARCHAR(50),    
+    mensaje     TEXT NOT NULL,
+    atendido    BOOLEAN NOT NULL DEFAULT FALSE,
+    fecha       TIMESTAMP NOT NULL DEFAULT NOW()
+);
+
+CREATE INDEX idx_vehiculos_placa ON vehiculos(placa);
+
+CREATE INDEX idx_ordenes_estado ON ordenes_servicio(estado);
+
+CREATE INDEX idx_ordenes_taller ON ordenes_servicio(taller_id);
+
+CREATE INDEX idx_ordenes_cliente ON ordenes_servicio(cliente_id);
+
+CREATE INDEX idx_ordenes_urgente ON ordenes_servicio(es_urgente) WHERE es_urgente = TRUE;
+
+CREATE INDEX idx_mensajes_no_leidos ON mensajes(taller_id, leido) WHERE leido = FALSE;
+
+CREATE INDEX idx_usuarios_correo ON usuarios(correo);
+
+INSERT INTO talleres (nombre, nit, telefono, correo, direccion, ciudad)
+VALUES
+    ('AutoTecnik Bogotá',   '900123456-1', '+57 601 234 5678', 'admin@autotecnik.com', 'Calle 80 # 45-20', 'Bogotá'),
+    ('Taller Central S.A.', '800987654-2', '+57 4 321 0987',   'info@tallercentral.com', 'Av. El Poblado # 10-15', 'Medellín'),
+    ('InyeCore Motores',    '700111222-3', '+57 2 567 8901',   'soporte@inyecore.com', 'Carrera 9 # 12-34', 'Cali');
+
+INSERT INTO usuarios (taller_id, nombre_completo, correo, contrasena_hash, rol, telefono)
+VALUES
+    
+    (1, 'Administrador AutoTecnik',  'admin@autotecnik.com',     'hash_admin_001', 'admin',    '+57 300 000 0001'),
+    
+    (1, 'Carlos Mendoza',            'carlos.m@autotecnik.com',  'hash_mec_001',   'mecanico', '+57 311 111 1111'),
+    (1, 'José Martínez',             'jose.m@autotecnik.com',    'hash_mec_002',   'mecanico', '+57 322 222 2222'),
+    (1, 'Pedro Suárez',              'pedro.s@autotecnik.com',   'hash_mec_003',   'mecanico', '+57 333 333 3333'),
+    
+    (NULL, 'Luis Ramírez',           'luis.r@correo.com',        'hash_cli_001',   'cliente',  '+57 300 100 1001'),
+    (NULL, 'Ana García',             'ana.g@correo.com',         'hash_cli_002',   'cliente',  '+57 300 200 2002'),
+    (NULL, 'Jorge Torres',           'jorge.t@correo.com',       'hash_cli_003',   'cliente',  '+57 300 300 3003'),
+    (NULL, 'María López',            'maria.l@correo.com',       'hash_cli_004',   'cliente',  '+57 300 400 4004');
+
+INSERT INTO clientes (usuario_id, cedula, es_vip)
+VALUES
+    (5, '10234567', TRUE),   
+    (6, '20345678', FALSE),
+    (7, '30456789', TRUE),   
+    (8, '40567890', FALSE);
+
+INSERT INTO mecanicos (usuario_id, taller_id, especialidad)
+VALUES
+    (2, 1, 'Frenos y Suspensión'),
+    (3, 1, 'Motor y Transmisión'),
+    (4, 1, 'Sistema Eléctrico');
+
+INSERT INTO vehiculos (cliente_id, placa, tipo, marca, modelo, anio, color, kilometraje_actual)
+VALUES
+    (1, 'ABC123', 'carro', 'Mazda',   'Mazda 3',       2021, 'Blanco',  45000),
+    (1, 'DEF456', 'moto',  'Honda',   'CB500F',        2020, 'Negro',   23000),
+    (2, 'GHI789', 'carro', 'Toyota',  'Corolla',       2019, 'Plata',   67000),
+    (3, 'JKL012', 'carro', 'Chevrolet','Spark',        2022, 'Rojo',    12000),
+    (4, 'MNO345', 'carro', 'Renault', 'Sandero',       2018, 'Azul',    89000);
+
+INSERT INTO tipos_reparacion (taller_id, nombre, descripcion)
+VALUES
+    (NULL, 'Frenos',                   'Revisión y cambio de discos, pastillas y líquido de frenos'),
+    (NULL, 'Motor',                    'Diagnóstico y reparación de motor, sincronización, juntas'),
+    (NULL, 'Transmisión',              'Revisión de caja automática o mecánica, cambio de aceite'),
+    (NULL, 'Sistema Eléctrico',        'Diagnóstico eléctrico, batería, alternador, sensores'),
+    (NULL, 'Mantenimiento Preventivo', 'Cambio de aceite, filtros, revisión general programada'),
+    (1,    'Diagnóstico Computarizado','Escaneo con scanner OBD2 especializado del taller');
+
+INSERT INTO ordenes_servicio (
+    taller_id, vehiculo_id, cliente_id, mecanico_id, tipo_reparacion_id,
+    numero_orden, estado, descripcion_problema, diagnostico_tecnico,
+    costo_estimado, costo_final, kilometraje_ingreso, es_urgente,
+    fecha_estimada_entrega, calificacion, comentario_cliente
+)
+VALUES
+    (1, 1, 1, 1, 1,
+     'ORD-001', 'Servicio Finalizado',
+     'Los frenos hacen ruido al frenar',
+     'Discos y pastillas delanteras desgastadas al 90%. Requiere cambio inmediato.',
+     350000, 390000, 44850, FALSE,
+     '2026-06-20', 5, 'Excelente servicio, muy rápidos y transparentes.'),
+
+    (1, 1, 1, 2, 2,
+     'ORD-002', 'En Reparación',
+     'El carro no enciende bien en las mañanas',
+     'Bujías desgastadas y cable de bujías deteriorado. Posible problema en bobina de encendido.',
+     280000, NULL, 45000, FALSE,
+     '2026-07-02', NULL, NULL),
+
+    (1, 3, 2, 1, 5,
+     'ORD-003', 'Recibido',
+     'Mantenimiento de los 70.000 km',
+     NULL,
+     220000, NULL, 67000, FALSE,
+     '2026-07-05', NULL, NULL),
+
+    (1, 4, 3, 3, 4,
+     'ORD-004', 'En Diagnóstico',
+     'La batería no dura, se descarga de noche',
+     'Escaneando el sistema eléctrico. Posible consumo parásito.',
+     180000, NULL, 12000, TRUE,  
+     '2026-07-01', NULL, NULL),
+
+    (1, 5, 4, 2, 3,
+     'ORD-005', 'Servicio Finalizado',
+     'La caja raspa al cambiar de segunda a tercera',
+     'Sincronizador de segunda-tercera desgastado. Cambio de aceite de transmisión necesario.',
+     950000, 1020000, 88900, FALSE,
+     '2026-06-25', 4, 'Buen trabajo, el precio subió un poco pero quedó perfecto.');
+
+INSERT INTO repuestos_orden (orden_id, nombre_pieza, cantidad, precio_unitario)
+VALUES
+    (1, 'Discos de Freno Delanteros',          2, 120000),
+    (1, 'Pastillas de Freno Delanteras',       1, 85000),
+    (1, 'Líquido de Frenos DOT4',              1, 35000),
+    (2, 'Bujías NGK Iridium',                  4, 45000),
+    (2, 'Cable de Bujías',                     1, 60000),
+    (5, 'Aceite de Transmisión ATF Dexron VI', 4, 45000),
+    (5, 'Sincronizador 2da-3ra velocidad',     1, 750000);
+
+INSERT INTO historial_estados (orden_id, usuario_id, estado_anterior, estado_nuevo, observacion)
+VALUES
+    (1, 2, NULL,               'Recibido',           'Vehículo recibido en taller. Se firmó la hoja de entrada.'),
+    (1, 2, 'Recibido',         'En Diagnóstico',     'Comenzó revisión de frenos.'),
+    (1, 2, 'En Diagnóstico',   'En Reparación',      'Confirmado: cambio de discos y pastillas necesario. Cliente aprobó.'),
+    (1, 2, 'En Reparación',    'Servicio Finalizado', 'Reparación completa. Prueba de ruta exitosa.'),
+    (2, 2, NULL,               'Recibido',           'Vehículo recibido.'),
+    (2, 2, 'Recibido',         'En Diagnóstico',     'Revisando sistema de encendido.'),
+    (2, 2, 'En Diagnóstico',   'En Reparación',      'Se aprobó cambio de bujías y cables.'),
+    (3, 1, NULL,               'Recibido',           'Ingreso por mantenimiento programado 70.000 km.'),
+    (4, 3, NULL,               'Recibido',           'Urgente: batería fallando. Cliente sin transporte.'),
+    (4, 3, 'Recibido',         'En Diagnóstico',     'Escaneando con OBD2 para detectar consumo parásito.'),
+    (5, 3, NULL,               'Recibido',           'Ingreso por problema de transmisión.'),
+    (5, 3, 'Recibido',         'En Diagnóstico',     'Se detectó el problema en el sincronizador.'),
+    (5, 3, 'En Diagnóstico',   'En Reparación',      'Cliente autorizó la reparación. Costo final $1.020.000.'),
+    (5, 3, 'En Reparación',    'Servicio Finalizado', 'Transmisión reparada. Prueba de manejo OK.');
+
+INSERT INTO proximos_servicios (vehiculo_id, taller_id, descripcion, kilometraje_sugerido)
+VALUES
+    (1, 1, 'Cambio de aceite de motor sintético 5W-30',    50000),
+    (1, 1, 'Revisión de correa de distribución',           60000),
+    (3, 1, 'Cambio de filtro de aire y combustible',       70000),
+    (5, 1, 'Alineación y balanceo de llantas',             90000);
+
+INSERT INTO reportes_ingresos (taller_id, anio, mes, total_ingresos, total_ordenes, tiempo_promedio_horas, satisfaccion_promedio)
+VALUES
+    (1, 2026, 1, 10100000, 47, 4.5, 4.6),
+    (1, 2026, 2, 11000000, 50, 4.3, 4.7),
+    (1, 2026, 3, 13200000, 55, 4.1, 4.8),
+    (1, 2026, 4, 14700000, 58, 4.0, 4.7),
+    (1, 2026, 5, 16000000, 53, 4.2, 4.9),
+    (1, 2026, 6, 18400000, 56, 4.2, 4.8);
+
+INSERT INTO mensajes (taller_id, orden_id, remitente_id, asunto, contenido)
+VALUES
+    (1, 2, 5, 'Consulta sobre mi orden #ORD-002',
+     'Buenos días, quisiera saber si ya tienen diagnóstico de mi vehículo. Gracias.'),
+    (1, 2, 2, 'Re: Consulta sobre mi orden #ORD-002',
+     'Hola Luis, ya tenemos el diagnóstico. Le escribimos pronto con los detalles y el costo.');
+
+INSERT INTO contactos_web (nombre, telefono, correo, asunto, mensaje)
+VALUES
+    ('Ricardo Peña', '+57 315 678 9012', 'r.pena@ejemplo.com',
+     'Demo del sistema', 'Me interesa ver una demo del sistema para mi taller en Barranquilla.');
+
+SELECT
+    o.numero_orden,
+    v.placa,
+    v.marca || ' ' || v.modelo AS vehiculo,
+    u_cli.nombre_completo AS cliente,
+    u_mec.nombre_completo AS mecanico,
+    o.estado,
+    o.es_urgente,
+    o.costo_estimado,
+    o.fecha_ingreso::DATE AS fecha_ingreso
+FROM ordenes_servicio o
+JOIN vehiculos     v     ON o.vehiculo_id = v.id
+JOIN clientes      cli   ON o.cliente_id  = cli.id
+JOIN usuarios      u_cli ON cli.usuario_id = u_cli.id
+LEFT JOIN mecanicos mec  ON o.mecanico_id = mec.id
+LEFT JOIN usuarios  u_mec ON mec.usuario_id = u_mec.id
+WHERE o.taller_id = 1
+  AND o.estado NOT IN ('Servicio Finalizado', 'Cancelado')
+ORDER BY o.es_urgente DESC, o.fecha_ingreso ASC;
+
+SELECT
+    o.numero_orden,
+    tr.nombre AS tipo_reparacion,
+    o.descripcion_problema,
+    o.estado,
+    o.costo_final,
+    o.calificacion,
+    o.fecha_ingreso::DATE AS ingreso,
+    o.fecha_finalizacion::DATE AS finalizacion
+FROM ordenes_servicio o
+JOIN vehiculos v ON o.vehiculo_id = v.id
+LEFT JOIN tipos_reparacion tr ON o.tipo_reparacion_id = tr.id
+WHERE v.placa = 'ABC123'
+ORDER BY o.fecha_ingreso DESC;
+
+SELECT
+    u.nombre_completo,
+    c.cedula,
+    u.telefono,
+    u.correo,
+    c.es_vip,
+    COUNT(o.id) AS total_ordenes,
+    MAX(o.fecha_ingreso)::DATE AS ultima_visita
+FROM clientes c
+JOIN usuarios u ON c.usuario_id = u.id
+LEFT JOIN ordenes_servicio o ON c.id = o.cliente_id
+GROUP BY c.id, u.nombre_completo, c.cedula, u.telefono, u.correo, c.es_vip
+ORDER BY total_ordenes DESC;
+
+SELECT
+    o.numero_orden,
+    v.placa,
+    SUM(r.precio_total) AS total_repuestos,
+    o.costo_final,
+    (o.costo_final - SUM(r.precio_total)) AS mano_de_obra
+FROM ordenes_servicio o
+JOIN vehiculos v ON o.vehiculo_id = v.id
+JOIN repuestos_orden r ON o.id = r.orden_id
+WHERE o.taller_id = 1
+  AND o.estado = 'Servicio Finalizado'
+GROUP BY o.id, o.numero_orden, v.placa, o.costo_final
+ORDER BY o.id;
+
+SELECT
+    o.numero_orden,
+    v.placa,
+    v.marca || ' ' || v.modelo AS vehiculo,
+    u.nombre_completo AS cliente,
+    o.estado,
+    o.fecha_ingreso
+FROM ordenes_servicio o
+JOIN vehiculos v  ON o.vehiculo_id  = v.id
+JOIN clientes  c  ON o.cliente_id   = c.id
+JOIN usuarios  u  ON c.usuario_id   = u.id
+WHERE o.es_urgente = TRUE
+  AND o.estado NOT IN ('Servicio Finalizado', 'Cancelado')
+ORDER BY o.fecha_ingreso ASC;
+
+SELECT
+    CASE mes
+        WHEN 1 THEN 'Enero'   WHEN 2 THEN 'Febrero'
+        WHEN 3 THEN 'Marzo'   WHEN 4 THEN 'Abril'
+        WHEN 5 THEN 'Mayo'    WHEN 6 THEN 'Junio'
+        WHEN 7 THEN 'Julio'   WHEN 8 THEN 'Agosto'
+        WHEN 9 THEN 'Septiembre' WHEN 10 THEN 'Octubre'
+        WHEN 11 THEN 'Noviembre' WHEN 12 THEN 'Diciembre'
+    END AS mes_nombre,
+    total_ingresos,
+    total_ordenes,
+    satisfaccion_promedio
+FROM reportes_ingresos
+WHERE taller_id = 1 AND anio = 2026
+ORDER BY mes ASC;
+
+SELECT
+    v.placa,
+    v.tipo,
+    v.marca,
+    v.modelo,
+    v.anio,
+    v.color,
+    v.kilometraje_actual,
+(SELECT o.estado
+    FROM ordenes_servicio o
+    WHERE o.vehiculo_id = v.id
+    AND o.estado NOT IN ('Servicio Finalizado', 'Cancelado')
+    ORDER BY o.fecha_ingreso DESC
+    LIMIT 1) AS servicio_activo
+    FROM vehiculos v
+JOIN clientes c ON v.cliente_id = c.id
+JOIN usuarios u ON c.usuario_id = u.id
+WHERE u.correo = 'luis.r@correo.com'
+AND v.activo = TRUE;
+
