@@ -440,20 +440,15 @@ SELECT
     v.anio,
     v.color,
     v.kilometraje_actual,
-    (SELECT o.estado
-     FROM ordenes_servicio o
-     WHERE o.vehiculo_id = v.id
-       AND o.estado NOT IN ('Servicio Finalizado', 'Cancelado')
-     ORDER BY o.fecha_ingreso DESC
-     LIMIT 1) AS servicio_activo
-FROM vehiculos v
+(SELECT o.estado
+    FROM ordenes_servicio o
+    WHERE o.vehiculo_id = v.id
+    AND o.estado NOT IN ('Servicio Finalizado', 'Cancelado')
+    ORDER BY o.fecha_ingreso DESC
+    LIMIT 1) AS servicio_activo
+    FROM vehiculos v
 JOIN clientes c ON v.cliente_id = c.id
 JOIN usuarios u ON c.usuario_id = u.id
 WHERE u.correo = 'luis.r@correo.com'
-  AND v.activo = TRUE;
+AND v.activo = TRUE;
 
-POR SI LA BASE DE DATOS YA EXISTE O LA QUIERES ELIMINAR
-DROP DATABASE IF EXISTS autometrica;
-CREATE DATABASE autometrica;
-
-\c autometrica;
