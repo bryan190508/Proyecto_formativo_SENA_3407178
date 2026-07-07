@@ -8,7 +8,11 @@ autometrica-full/
 ---
 1. Backend (FastAPI)
 Instalación
-```powershell
+```powershell 
+cd Proyecto_formativo_SENA_3407178-main
+cd autometrica-full
+(solo se hace si cuando la descomprimes esta dos veces adentro de la carpeta descomprimida, si no de una vez se ejecuta lo de abajo)
+cd autometrica-full
 cd backend
 pip install -r requirements.txt --break-system-packages
 ```
